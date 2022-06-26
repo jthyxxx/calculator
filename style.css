@@ -32,16 +32,36 @@ h1{
     flex-direction: column;
 }
 
-.displayPart{
+
+.display{
     margin: 10px 10px 0 10px;
+    display: flex;
+    height: 120px;
+    border-radius: 12px;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #916bbf;
+    width: 430px;
+
+}
+
+.displayPart{
+    margin-right: 15px;
     display: flex;
     flex-direction: column;
     height: 120px;
     border-radius: 12px;
     align-items: center;
     background-color: #916bbf;
-    width: 430px;
+    width: 380px;
 }
+
+
+.currentOperator{
+    font-size: 3rem;
+    width: 30px;
+}
+
 
 .upper{
     width: 400px;
@@ -79,4 +99,5 @@ button{
     color: #C996CC;
     border: none;
 }
+
 
