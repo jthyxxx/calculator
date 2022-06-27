@@ -11,15 +11,38 @@ let currentN;
 let currentOperator = ""
 lower.innerText = total
 
-let operators = ['+','-','×','÷','=','.']
+let operators = ['+','-','×','÷','=','.','del','allclear']
 
 let displayUpdate = () => {
-    upper.innerHTML = calculation.join("")
+    if(calculation.length > 17){
+        upper.innerText = (Number(calculation.join(""))).toExponential(2)
+    }
+    else{
+        upper.innerText = calculation.join("")
+    }
     currentOpe.innerText = currentOperator
 }
 
 let displayTotal = () => {
-    lower.innerText = total
+    let totalLength = Array.from(total.toString())
+    let ind = totalLength.indexOf('.')
+    let decimals = [...totalLength.slice(ind+1)]
+    if(decimals.length >= 3){
+        if(totalLength.length > 17){
+            lower.innerText = total.toExponential(2)
+        }
+        else{
+            lower.innerText = total.toFixed(2)
+        }
+    }else{
+        if(totalLength.length > 17){
+            lower.innerText = total.toExponential(2)
+        }
+        else{
+            lower.innerText = total
+        }
+    }
+    
 }
 
 let erase = () => {
@@ -28,16 +51,21 @@ let erase = () => {
         upper.innerText = 0
     }else{
         calculation.pop()
+        currentNumber = Number(calculation.join(""))
         displayUpdate()
     }
 }
 
 let eraseAll = () => {
     calculation = []
+    currentNumber = 0
+    total = 0
+    setZero()
 }
 
 let setZero = () => {
     upper.innerText = 0
+    lower.innerText = 0
 }
 
 buttons.forEach((button)=>{
@@ -73,6 +101,10 @@ buttons.forEach((button)=>{
                 currentOperator = ""
             }else if(button.value === '.'){
                 calculation.push(button.value)
+            }else if(button.value === 'del'){
+                erase()
+            }else if(button.value === 'allclear'){
+                eraseAll()
             }
         }
         
