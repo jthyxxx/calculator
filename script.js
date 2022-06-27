@@ -140,12 +140,13 @@ let displayTotal = () => {
 
     let totalLength = Array.from(total.toString())
     let ind = totalLength.indexOf('.')
+    let nnn = [...totalLength.splice(0,ind)]
     let decimals;
     if(ind != -1){
         decimals = [...totalLength.slice(ind+1)]
         if(decimals.length >= 3){
 
-            if(totalLength.length > 17){
+            if(nnn.length > 17){
                 lower.innerText = total.toExponential(2)
             }
             else{
@@ -162,7 +163,7 @@ let displayTotal = () => {
         }
     }else{
 
-        if(totalLength.length > 17){
+        if(nnn.length > 17){
             lower.innerText = total.toExponential(2)
         }
         else{
