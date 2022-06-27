@@ -88,11 +88,11 @@ h1{
     grid-gap: 5px;
 }
 
-.equal{
+#equal{
     grid-column: span 2;
 }
 
-button{
+.symbolButton{
     border-radius: 5px;
     font-size: 2.5rem;
     background-color: #3D2C8D;
