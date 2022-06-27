@@ -2,7 +2,11 @@ const buttons = document.querySelectorAll('.symbolButton')
 const upper = document.querySelector('.upper')
 const lower = document.querySelector('.lower')
 const currentOpe = document.querySelector('.currentOperator')
-
+const changeTheme = document.querySelector('.changeTheme')
+const body = document.querySelector('body')
+const calculator = document.querySelector('.calculator')
+const h1 = document.querySelector('h1')
+const display = document.querySelector('.display')
 
 let calculation = [];
 let total = 0;
@@ -60,10 +64,6 @@ buttons.forEach((button)=>{
             displayUpdate()
         }
         
-        
-        
-       
-        
     })
     
     button.addEventListener('mouseup', ()=>{
@@ -78,6 +78,47 @@ buttons.forEach((button)=>{
     })
 }
 )
+
+
+let changeColorTheme = () => {
+    body.style.background = 'rgb(15,4,76)'
+    body.style.background = 'linear-gradient(0deg, rgba(15,4,76,1) 0%, rgba(120,122,145,1) 100%)'
+    calculator.style.background = '#0F044C'
+    h1.style.color = '#141E61'
+    display.style.backgroundColor = '#141E61'
+    buttons.forEach((button) => {
+        button.style.background = '#141E61'
+        button.style.color = '#EEEEEE'
+    })
+
+    changeTheme.style.backgroundColor = '#141E61'
+    changeTheme.style.color = '#EEEEEE'
+    upper.style.color = '#EEEEEE'
+    lower.style.color = '#EEEEEE'
+    currentOpe.style.color = '#EEEEEE'
+}
+
+
+changeTheme.addEventListener('mousedown', () => {
+    changeTheme.style.border = '3px solid #3D2C8D'
+    changeTheme.style.fontSize = '18px'
+
+    changeColorTheme()
+
+
+    changeTheme.addEventListener('mouseup', ()=>{
+        changeTheme.style.border = 'none'
+        changeTheme.style.fontSize = '17px'
+        
+    })
+    
+    changeTheme.addEventListener('mouseleave', ()=>{
+        changeTheme.style.border = 'none'
+        changeTheme.style.fontSize = '17px'
+    })
+
+})
+
 
 if(total != 0){
     lower.innerText = total
