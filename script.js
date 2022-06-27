@@ -11,7 +11,7 @@ let currentN;
 let currentOperator = ""
 lower.innerText = total
 
-let operators = ['+','-','*','/','=','.']
+let operators = ['+','-','×','÷','=','.']
 
 let displayUpdate = () => {
     upper.innerHTML = calculation.join("")
@@ -49,22 +49,34 @@ buttons.forEach((button)=>{
 
         if(operators.includes(button.value)){
             if(button.value === '+'){
+                solve()
                 currentOperator = '+'
                 calculation = []
-                solve()
+                currentNumber = 0
             }else if(button.value === '-'){
+                solve()
                 currentOperator = '-'
                 calculation = []
+                currentNumber = 0
+            }else if(button.value === '×'){
                 solve()
+                currentOperator = '×'
+                calculation = []
+                currentNumber = 1
+            }else if(button.value === '÷'){
+                solve()
+                currentOperator = '÷'
+                calculation = []
+                currentNumber = 1
             }else if(button.value === '='){
                 solve()
+                currentOperator = ""
             }else if(button.value === '.'){
                 calculation.push(button.value)
             }
-
-            currentNumber = 0
-
-        }else{
+        }
+        
+        else{
             calculation.push(Number(button.value))
             currentNumber = Number(calculation.join(""))
             if(currentOperator == ""){
@@ -94,16 +106,17 @@ buttons.forEach((button)=>{
 let solve = () => {
 
     if(total == 0){
-        if(currentOperator === '+'){
-            total= currentNumber;
-        }else if(currentOperator === '-'){
-            total= currentNumber;
-        }
+        total= currentNumber
+        
     }else{
         if(currentOperator === '+'){
             total+= currentNumber;
         }else if(currentOperator === '-'){
             total-= currentNumber;
+        }else if(currentOperator === '×'){
+            total*= currentNumber
+        }else if(currentOperator === '÷'){
+            total/= currentNumber
         }
     }
     displayTotal()
